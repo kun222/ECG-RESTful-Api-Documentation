@@ -1,0 +1,210 @@
+FORMAT: 1A
+HOST:  http://ecg.uvic.ca:8080/v1/
+
+# ECG REST API DOC
+
+Polls is a simple API allowing consumers to view polls and vote in them.
+
+
+
+
+
+
+ 
+## Login [/{clinic}/login]
+Login
+
+<table>
+  <tr>
+    <td colspan="2"><b>Required JSON Body </b></td>
+  </tr>
+  <tr>
+    <td width="50%">username</td>
+    <td width="50%">String</td>
+  </tr>
+  <tr>
+    <td>password</td>
+    <td>String</td>
+  </tr>
+</table>
+
+
+
+### Nurse login to the software[POST]
++ Parameters
+    + clinic: test (required, String) - Refers to the clinic's name that uses the ecg software
+
+
++ Request (application/json)
+
+ 
+    
+    + Body
+        
+
+                {
+                    "username": "mail.com",
+                    "password": "pin"
+                }
+
+
+
++ Response 200 (application/json)
+
+        {
+            "Message": "1"
+           
+    
+        }
+
++ Response 400 (application/json)
+
+        {
+            "Message": "Login failed, please check you password and username"
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "Message": "The clinic id doesn't exist in the database, please check the clinic in the url"
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+## Group Appointment-Records 
+## Appointment-Records [/records]
+### test[GET]
+
+## Group Device-Infos 
+## Device-Infos [/devices]
+### test[GET]
+
+## Group Ecg-raw-data
+## Ecg-raw-data [/dataset]
+### test[GET]
+ 
+## Group Ecg-tests
+## Ecg-test1 [/dataset]
+### test[GET]
+
+## Group Devices
+## Ecg-test [/dataset]
+### test[GET]
+
+
+
+
+## Group Nurses
+## The nurse registers to the software [/{clinic}/nurses] 
+Introduction
+
+<table>
+  <tr>
+    <td colspan="2"><b>Required JSON Body </b></td>
+  </tr>
+  <tr>
+    <td width="50%">lastname</td>
+    <td width="50%">String</td>
+  </tr>
+  <tr>
+    <td>midname</td>
+    <td>String</td>
+  </tr>
+   <tr>
+    <td>firstname</td>
+    <td>String</td>
+  </tr>
+  <tr>
+    <td>phone</td>
+    <td>Integer</td>
+  </tr>
+  <tr>
+    <td>clinicId</td>
+    <td>Integer</td>
+  </tr>
+  <tr>
+    <td>password</td>
+    <td>String</td>
+  </tr>
+  <tr>
+    <td>email</td>
+    <td>String</td>
+  </tr>
+ 
+</table>
+
+
+
+
+
++ Parameters
+    + clinic: test (required, String) - Refers to the clinic's name that uses the ecg software
+
+### The nurse registers to the software[POST]
+
+
++ Request (application/json)
+
+    + Headers
+    
+                Authorization: Bearer
+    
+    + Body
+        
+
+                {
+                    "lastname": "Taylor",
+                    "midname": "S",
+                    "firstname": "John",
+                    "phone": 7762321232,
+                    "clinicId": 1,
+                    "password": "123",
+                    "email": "example@gmail.com"
+            
+                }
+
+
+
+
++ Response 200 (application/json)
+
+        {
+            "success": "the new nurse account has successfully created",
+            "nurseId": 2
+    
+        }
+
++ Response 400 (application/json)
+
+        {
+            "errorMessage": "the email address already existed"
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "errorMessage": "the clinic id doesn't exist in the database, please check the {clinic} in the url"
+        }
+
+
+
+
+
+
+## Group Patients
+## Patient-Infos [/patients]
+### test[GET]
+
+
+## Group Phones
+## Phone-Infos [/phone]
+### test[GET]
